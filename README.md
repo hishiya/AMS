@@ -2,6 +2,25 @@
 
 **AMS** (Anime & Movie & Series) — це повноцінний Full-Stack (PERN) веб-додаток для зручного списку та відстеження переглянутих аніме, фільмів та серіалів. Проєкт дозволяє користувачеві додавати нові тайтли, завантажувати постери, виставляти рейтинги та гнучко керувати своєю медіатекою.
 
+## Скріншоти (Screenshots)
+
+**Головна сторінка (Home Page):**  
+*Перегляд найкращих тайтлів, автоматично відсортованих за рейтингом.*
+<img width="1865" height="967" alt="Home" src="https://github.com/user-attachments/assets/4fc5a9c8-1f00-44ae-bec2-d913d9ce571e" />
+
+**Додавання контенту (Dashboard):**  
+*Сторінка з можливістю додавання переглянутого контенту.*
+<img width="1865" height="967" alt="Dashboard" src="https://github.com/user-attachments/assets/23e36005-eaae-4389-89eb-98863a98b23d" />
+
+**Редагування контенту (Edit):**  
+*Модальне вікно з можливістю реадгування контенту*
+<img width="1865" height="967" alt="Edit" src="https://github.com/user-attachments/assets/66564d27-e203-4bb9-855e-a98ec6e6581e" />
+
+**Адаптивний дизайн на мобільних пристроях (Mobile View):**  
+*Картки автоматично підлаштовуються під розмір екрану.*
+<img width="382" height="870" alt="Mobile" src="https://github.com/user-attachments/assets/5d6960ec-5876-49ed-b870-9d7e16676baf" />
+
+
 ---
 
 ## Головні можливості (Features)
