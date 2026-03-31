@@ -1,0 +1,85 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.title {
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.25rem;
+}
+
+.formElement {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.input,
+.textarea,
+.fileInput {
+    width: 100%;
+    padding: 8px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.textarea {
+    min-height: 80px;
+}
+
+.fileInputContainer {
+    color: #ccc;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.submitButton,
+.cancelButton {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submitButton {
+    background: transparent;
+    border: 1px solid #666;
+    color: #ccc;
+}
+
+.cancelButton {
+    background: transparent;
+    border: 1px solid #666;
+    color: #ccc;
+}

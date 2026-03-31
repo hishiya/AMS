@@ -1,0 +1,24 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    /* Основні налаштування */
+    "target": "ES2020",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    /* Суворість та якість коду */
+    "strict": true,
+    "noImplicitAny": true, // Вже включено в "strict", але можна залишити для ясності
+
+    /* Взаємодія з модулями */
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    
+    /* Інше */
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"], // Явно вказуємо, що компілювати потрібно тільки файли в папці src
+  "exclude": ["node_modules"] // Ігноруємо node_modules
+}

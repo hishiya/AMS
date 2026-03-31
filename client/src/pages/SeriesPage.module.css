@@ -1,0 +1,52 @@
+.page {
+	width: min(1100px, 100%);
+	margin: 0 auto;
+	padding: 20px 16px 28px;
+}
+
+.title {
+	margin: 0;
+	color: #fff;
+	font-size: clamp(1.5rem, 2.5vw, 2rem);
+}
+
+.subtitle {
+	margin: 8px 0 0;
+	color: rgba(255, 255, 255, 0.78);
+}
+
+.feedback {
+	margin-top: 14px;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+.error {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	border: 1px solid rgba(255, 84, 84, 0.35);
+	background: rgba(160, 20, 20, 0.25);
+	padding: 8px 10px;
+	border-radius: 10px;
+}
+
+.retryButton {
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	background: rgba(255, 255, 255, 0.07);
+	color: #fff;
+	border-radius: 8px;
+	padding: 6px 10px;
+	cursor: pointer;
+}
+
+.grid {
+	margin: 18px 0 0;
+	padding: 0;
+	list-style: none;
+	display: grid;
+	gap: 12px;
+}
+
+.listItem {
+	margin: 0;
+}
