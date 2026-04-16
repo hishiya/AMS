@@ -1,15 +1,13 @@
-import axios from 'axios'
-import { type Anime } from '../types/anime'
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+import http from "./http";
+import { type Anime } from "../types/anime";
 
 export type HomeContent = {
-  anime: Anime[]
-  films: Anime[]
-  series: Anime[]
-}
+  anime: Anime[];
+  films: Anime[];
+  series: Anime[];
+};
 
 export async function getHomeContent(): Promise<HomeContent> {
-  const response = await axios.get<HomeContent>(`${API_BASE_URL}/home`)
-  return response.data
+  const response = await http.get<HomeContent>("/home");
+  return response.data;
 }

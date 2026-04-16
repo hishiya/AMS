@@ -1,22 +1,20 @@
-import axios from 'axios'
-import { type Anime } from '../types/anime'
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+import http from "./http";
+import { type Anime } from "../types/anime";
 
 export async function getAllAnime() {
-  const response = await axios.get<Anime[]>(`${API_BASE_URL}/anime`)
-  return response.data
+  const response = await http.get<Anime[]>("/anime");
+  return response.data;
 }
 
 export async function deleteAnime(id: number) {
-  await axios.delete(`${API_BASE_URL}/anime/${id}`)
+  await http.delete(`/anime/${id}`);
 }
 
 export async function updateAnime(id: number, formData: FormData) {
-  const response = await axios.put(`${API_BASE_URL}/anime/${id}`, formData, {
+  const response = await http.put(`/anime/${id}`, formData, {
     headers: {
-      'Content-Type': 'multipart/form-data',
+      "Content-Type": "multipart/form-data",
     },
-  })
-  return response.data
+  });
+  return response.data;
 }

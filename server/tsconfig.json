@@ -14,7 +14,7 @@
     /* Взаємодія з модулями */
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    
+
     /* Інше */
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true

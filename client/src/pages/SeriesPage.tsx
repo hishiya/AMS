@@ -1,81 +1,93 @@
-import { useEffect, useState } from 'react'
-import { getAllSeries, deleteSeries, updateSeries } from '../api/seriesApi'
-import { SeriesCard } from '../components/SeriesCard'
-import { type Anime as Series } from '../types/anime'
-import styles from './SeriesPage.module.css'
-import { EditModal } from '../components/EditModal'
+import { useEffect, useState } from "react";
+import { getAllSeries, deleteSeries, updateSeries } from "../api/seriesApi";
+import { SeriesCard } from "../components/SeriesCard";
+import { type Anime as Series } from "../types/anime";
+import styles from "./SeriesPage.module.css";
+import { EditModal } from "../components/EditModal";
 
-export function SeriesPage() {
-  const [seriesList, setSeriesList] = useState<Series[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<Error | null>(null)
-  const [retryCount, setRetryCount] = useState(0)
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
-  const [selectedSeries, setSelectedSeries] = useState<Series | null>(null)
+type SeriesPageProps = {
+  isAuthenticated: boolean;
+};
+
+export function SeriesPage({ isAuthenticated }: SeriesPageProps) {
+  const [seriesList, setSeriesList] = useState<Series[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedSeries, setSelectedSeries] = useState<Series | null>(null);
 
   useEffect(() => {
     const fetchSeries = async () => {
-      setLoading(true)
-      setError(null)
+      setLoading(true);
+      setError(null);
 
       try {
-        const data = await getAllSeries()
-        setSeriesList(data)
+        const data = await getAllSeries();
+        setSeriesList(data);
       } catch (err) {
-        setError(err instanceof Error ? err : new Error('An unknown error occurred'))
+        setError(
+          err instanceof Error ? err : new Error("An unknown error occurred"),
+        );
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    void fetchSeries()
-  }, [retryCount])
+    void fetchSeries();
+  }, [retryCount]);
 
   const handleRetry = () => {
-    setRetryCount((count) => count + 1)
-  }
+    setRetryCount((count) => count + 1);
+  };
 
   const handleDelete = async (id: number) => {
     try {
-      await deleteSeries(id)
-      setSeriesList((list) => list.filter((item) => item.id !== id))
+      await deleteSeries(id);
+      setSeriesList((list) => list.filter((item) => item.id !== id));
     } catch (err) {
-      console.error('Failed to delete series:', err)
+      console.error("Failed to delete series:", err);
     }
-  }
+  };
 
   const handleEdit = (series: Series) => {
-    setSelectedSeries(series)
-    setIsEditModalOpen(true)
-  }
+    setSelectedSeries(series);
+    setIsEditModalOpen(true);
+  };
 
   const handleSubmitEdit = async (formData: FormData) => {
-    if (!selectedSeries) return
+    if (!selectedSeries) return;
 
     await updateSeries(selectedSeries.id, formData)
       .then((updatedSeries) => {
         setSeriesList((list) =>
-          list.map((item) => (item.id === updatedSeries.id ? updatedSeries : item))
-        )
-        setIsEditModalOpen(false)
-        setSelectedSeries(null)
+          list.map((item) =>
+            item.id === updatedSeries.id ? updatedSeries : item,
+          ),
+        );
+        setIsEditModalOpen(false);
+        setSelectedSeries(null);
       })
       .catch((err) => {
-        console.error('Failed to update series:', err)
-      })
-  }
+        console.error("Failed to update series:", err);
+      });
+  };
 
   return (
     <section className={styles.page}>
       <h1 className={styles.title}>Series</h1>
-      <p className={styles.subtitle}>Колекція серіалів з рейтингом, датою релізу та коротким описом.</p>
+      <p className={styles.subtitle}>
+        Колекція серіалів з рейтингом, датою релізу та коротким описом.
+      </p>
 
       {loading && <p className={styles.feedback}>Завантаження...</p>}
 
       {error && (
         <p className={`${styles.feedback} ${styles.error}`}>
-          {error.message || 'Не вдалося заonDelete={handleDelete} вантажити серіали'}
-          <button onClick={handleRetry} className={styles.retryButton}>Спробувати ще</button>
+          {error.message || "Не вдалося завантажити серіали"}
+          <button onClick={handleRetry} className={styles.retryButton}>
+            Спробувати ще
+          </button>
         </p>
       )}
 
@@ -87,7 +99,11 @@ export function SeriesPage() {
         <ul className={styles.grid}>
           {seriesList.map((series) => (
             <li key={series.id} className={styles.listItem}>
-              <SeriesCard series={series} onDelete={handleDelete} onEdit={handleEdit} />
+              <SeriesCard
+                series={series}
+                onDelete={isAuthenticated ? handleDelete : undefined}
+                onEdit={isAuthenticated ? handleEdit : undefined}
+              />
             </li>
           ))}
         </ul>
@@ -100,5 +116,5 @@ export function SeriesPage() {
         initialData={selectedSeries}
       />
     </section>
-  )
+  );
 }
